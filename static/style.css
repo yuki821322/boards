@@ -71,20 +71,38 @@ hr{
     box-shadow: 10px 13px 20px rgb(58, 58, 58);
 }
   
-.Deleat_Button,
-a.Deleat_Button {
+.Delete_Button,
+a.Delete_Button {
     background-color: rgb(54, 54, 54);  /* ボタンの背景色 */
     color: rgb(251, 251, 251);           /* 文字色 */
     border: none;           /* 枠線なし */
     padding: 15px 16px;
     font-size: 21px;
-    margin-left: 60px;      /* 内側の余白 */
+    margin-left: 10px;      /* 内側の余白 */
     cursor: pointer;        /* マウスオーバー時のカーソル */
     border-radius: 5px;     /* 角丸にする */
 }
 
-.Deleat_Button:hover,
-a.Deleat_Button:hover{
+.Delete_Button:hover,
+a.Delete_Button:hover{
+    color: #323232;
+    background: #ffffff;
+}
+
+.Update_Button,
+a.Update_Button {
+    background-color: rgb(54, 54, 54);  /* ボタンの背景色 */
+    color: rgb(251, 251, 251);           /* 文字色 */
+    border: none;           /* 枠線なし */
+    padding: 15px 16px;
+    font-size: 21px;
+    margin-left: 10px;      /* 内側の余白 */
+    cursor: pointer;        /* マウスオーバー時のカーソル */
+    border-radius: 5px;     /* 角丸にする */
+}
+
+.Update_Button:hover,
+a.Update_Button:hover{
     color: #323232;
     background: #ffffff;
 }
@@ -95,4 +113,16 @@ a.Deleat_Button:hover{
     width: 15em;
     font-size: 40px;
     color: #2b2b2b;
+}
+
+.Change_title {
+    display: inline-block;
+    width: 20%;
+    /*コレ*/padding: 2px 0.5em;
+    /*コレ*/line-height: 3;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    margin: 0.5em 0;
+    font-size: 18px;
 }

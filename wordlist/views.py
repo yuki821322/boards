@@ -21,15 +21,19 @@ def create(repuest):
 
 def delete(request):
     title_id = request.POST.get("title_id")
-    new_title = models.TitleModel.objects.get(id=title_id)
-    new_title.delete()
+    action = request.POST.get("action")  # どのボタンが押されたか判定
+
+    if action == "delete":
+        # DELETE処理
+        title = models.TitleModel.objects.get(id=title_id)
+        title.delete()
+
+    elif action == "update":
+        # UPDATE処理
+        new_title = request.POST.get("new_title")  # フォームから新しいタイトルを取得
+        if new_title:  # 空でない場合のみ更新
+            title = models.TitleModel.objects.get(id=title_id)
+            title.title = new_title
+            title.save()
+
     return HttpResponseRedirect(reverse("wordlist:index"))
-
-
-
-# def change(reqest):
-#     title_id = request.POST.get("title_id")
-#     new_title = models.TitleModel.objects.get(id=title_id)
-#     new_title = get_object_or_404(TitleModel, pk=new_title_id)
-#     new_title.save()
-#     return redirect("dxf_list")

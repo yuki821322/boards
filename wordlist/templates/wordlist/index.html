@@ -23,9 +23,14 @@ Board | Home
 {% for task in all_task %}
 <form  class="flex-form" action="{% url 'wordlist:deleat' %}" method="POST">
     <h2 class="task_title">{{ task.title }}</h2>
-  {% csrf_token %}
-  <input type="hidden" name="title_id" value="{{ task.id }}">
-  <button class="Deleat_Button" type="submit">DELETE</button>
+    {% csrf_token %}
+    <input type="hidden" name="title_id" value="{{ task.id }}">
+    
+    <input class="Change_title" type="text" name="new_title" placeholder="Change the title">
+    <!-- DELETEボタン -->
+    <button class="Update_Button" type="submit" name="action" value="update">UPDATE</button>
+    <button class="Delete_Button" type="submit" name="action" value="delete">DELETE</button>
+    
 </form>
 {% endfor %}
 {% endblock %}
