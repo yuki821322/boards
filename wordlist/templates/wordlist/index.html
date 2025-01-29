@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+Board | Home
+{% endblock %}
+{% block content %}
+
+<div class='container'>
+    <div class='content'>
+        <h1 class="content_text">Book word list</h1>
+    </div>
+</div>
+
+<form action="{% url 'wordlist:create' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <div class="Booklist_title">
+            <h1><p class="title">Title<input id="input" type="text" name='title'><input href="" class="btn btn--orange btn--radius" type="submit" value="Push"></input></p></h1>
+        </div>
+    </div>
+</form>
+<hr>
+
+{% for task in all_task %}
+<form  class="flex-form" action="{% url 'wordlist:deleat' %}" method="POST">
+    <h2 class="task_title">{{ task.title }}</h2>
+  {% csrf_token %}
+  <input type="hidden" name="title_id" value="{{ task.id }}">
+  <button class="Deleat_Button" type="submit">DELEAT</button>
+</form>
+{% endfor %}
+{% endblock %}
