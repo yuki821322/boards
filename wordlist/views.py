@@ -26,6 +26,7 @@ def delete(request):
     return HttpResponseRedirect(reverse("wordlist:index"))
 
 
+
 # def change(reqest):
 #     title_id = request.POST.get("title_id")
 #     new_title = models.TitleModel.objects.get(id=title_id)
