@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+Board | Home
+{% endblock %}
+{% block content %}
+
+<h1>Title: {{ task.title }}</h1>
+
+<form action="{% url 'wordlist:add_post' task.id %}" method="post" class="form-container">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="date">Day:</label>
+        <input type="date" name="date" id="date" value="{{ task.date|date:'Y-m-d' }}" required class="input-field">
+    </div>
+
+    <div class="form-group">
+        <label for="page_number">Number of pages:</label>
+        <input type="number" name="page_number" id="page_number" value="{{ task.page_number }}" class="input-field">
+    </div>
+
+    <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea name="content" id="content" rows="4" class="input-field">{{ task.content }}</textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Addition</button>
+</form>
+
+<h2 class="title">Registration details</h2>
+<ul class="post-list">
+    {% for post in task.postmodel_set.all %}
+        <li class="post-item">
+            <div class="post-content">
+                <strong class="post-date">{{ post.date }}</strong> - 
+                <span class="post-page">Page: {{ post.page_number }}</span><br>
+                <p class="post-text">{{ post.content }}</p>
+            </div>
+            <form action="{% url 'wordlist:delete_post' post.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">DELETE</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}

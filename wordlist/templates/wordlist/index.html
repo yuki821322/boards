@@ -4,17 +4,18 @@ Board | Home
 {% endblock %}
 {% block content %}
 
+
 <div class='container'>
     <div class='content'>
         <h1 class="content_text">Book word list</h1>
     </div>
 </div>
 
-<form action="{% url 'wordlist:create' %}" method="post">
+<form class="d-flex" action="{% url 'wordlist:create' %}" method="post">
     {% csrf_token %}
     <div>
-        <div class="Booklist_title">
-            <h1><p class="title">Title<input id="input" type="text" name='title'><input href="" class="btn btn--orange btn--radius" type="submit" value="Push"></input></p></h1>
+        <div class="Booklist_title ">
+            <h1><p class="title-1">Title<input id="input" type="text" name='title'><input href="" class="btn btn--orange btn--radius" type="submit" value="Push"></input></p></h1>
         </div>
     </div>
 </form>
@@ -29,8 +30,8 @@ Board | Home
     <input class="Change_title" type="text" name="new_title" placeholder="Change the title">
     <!-- DELETEボタン -->
     <button class="Update_Button" type="submit" name="action" value="update">UPDATE</button>
-    <button class="Delete_Button" type="submit" name="action" value="delete">DELETE</button>
-    
+    <button class="Delete_Button" type="submit" name="action" value="delete" onclick="return confirm('本当に削除しますか？');" >DELETE</button>
+    <a class="input_button" href="{% url 'wordlist:input' task.id %}">INPUT</a>
 </form>
 {% endfor %}
 {% endblock %}

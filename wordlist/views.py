@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from . import models
+from datetime import datetime
 
 
 # Create your views here.
@@ -37,3 +38,32 @@ def delete(request):
             title.save()
 
     return HttpResponseRedirect(reverse("wordlist:index"))
+
+
+def input(request, id):
+    task = models.TitleModel.objects.get(id=id)
+    context = {"task": task}
+    return render(request, "wordlist/input.html", context)
+
+
+def add_post(request, id):
+    task = models.TitleModel.objects.get(id=id)
+
+    if request.method == "POST":
+        new_post = models.PostModel(
+            title=task,
+            date=request.POST.get("date"),
+            page_number=request.POST.get("page_number"),
+            content=request.POST.get("content"),
+        )
+        new_post.save()
+
+    return HttpResponseRedirect(reverse("wordlist:input", args=[id]))
+
+
+def delete_post(request, post_id):
+    post = models.PostModel.objects.get(id=post_id)
+    task_id = post.title.id  # 削除後にリダイレクトするために task_id を取得
+    post.delete()
+    return HttpResponseRedirect(reverse("wordlist:input", args=[task_id]))
+
